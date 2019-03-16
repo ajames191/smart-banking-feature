@@ -70,13 +70,11 @@ public class LedgerReader {
 
                     if (currentId == 0 && ledgerEntry.getAccountType() == AccountTypes.CURRENT) {
                         currentId = ledgerEntry.getAccountId();
-                    } else if (savingId == 0 && ledgerEntry.getAccountType() == AccountTypes.SAVINGS){
+                    } else if (savingId == 0 && ledgerEntry.getAccountType() == AccountTypes.SAVINGS) {
                         savingId = ledgerEntry.getAccountId();
                     }
-
                 }
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

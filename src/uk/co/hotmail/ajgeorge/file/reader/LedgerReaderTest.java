@@ -4,17 +4,35 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import uk.co.hotmail.ajgeorge.model.AccountTypes;
+import uk.co.hotmail.ajgeorge.model.Customer;
 import uk.co.hotmail.ajgeorge.model.LedgerEntry;
 
-import static org.junit.Assert.*;
+import java.io.File;
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class LedgerReaderTest {
 
-    LedgerReader underTest = new LedgerReader();
+    private LedgerReader underTest = new LedgerReader();
 
     @Test
     public void getCustomersWithLedgers() {
-        // TODO
+        //given
+        //two test files
+        //customer-1234567-ledger.csv && customer-1234568-ledger.csv
+
+        //when
+        ArrayList<Customer> actual = underTest.getCustomersWithLedgers();
+
+        //then
+        assertEquals(2, actual.size());
+        assertEquals(1234567, actual.get(0).getId());
+        assertEquals(8, actual.get(0).getLedger().getLedgerEntries().size());
+        assertEquals(1234568, actual.get(1).getId());
+        assertEquals(8, actual.get(1).getLedger().getLedgerEntries().size());
+
     }
 
     @Test
@@ -100,7 +118,7 @@ public class LedgerReaderTest {
     @Test
     public void dateIsIsoFormat_withCorrectDate() throws Exception {
 
-        // givenca
+        // given
         String data = "2018-12-30T22:10:00Z";
         //when
         boolean actual = underTest.dateIsIsoFormat(data);
@@ -111,7 +129,7 @@ public class LedgerReaderTest {
     @Test
     public void dateIsIsoFormat_withIncorrectDate() throws Exception {
 
-        // givenca
+        // given
         String data = "2018-12-30T22:10:00";
 
         thrown.expect( Exception.class );

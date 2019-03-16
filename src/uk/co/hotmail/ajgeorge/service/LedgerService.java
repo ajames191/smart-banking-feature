@@ -86,6 +86,14 @@ public class LedgerService {
         }
     }
 
+    protected ArrayList<LedgerEntry> getLedgerEntriestoAdd() {
+        return new ArrayList<>(LedgerEntriestoAdd);
+    }
+
+    public ArrayList<Customer> getTempCustomers() {
+        return new ArrayList<>(tempCustomers);
+    }
+
     protected void addSystemLedgers(float transferAmount, Account decrementAccount,
                                     Account incrementAccount) {
 

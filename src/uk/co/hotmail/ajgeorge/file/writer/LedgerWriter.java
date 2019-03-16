@@ -18,7 +18,6 @@ public class LedgerWriter {
                 writer.write("AccountID,AccountType,InitiatorType,DateTime,TransactionValue\n");
                 for (LedgerEntry entry : customer.getLedger().getLedgerEntries()) {
                     writer.write(entry.toCsvString());
-                    System.out.println(entry.toCsvString());
                 }
                 writer.close();
             } catch (IOException e) {
